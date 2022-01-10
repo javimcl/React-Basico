@@ -1,3 +1,1 @@
-
-
-console.log('ddd')
+console.log('ggg')
