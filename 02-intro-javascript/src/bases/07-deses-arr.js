@@ -23,12 +23,12 @@ const [letras, numeros]= retornaArreglo();
 //Tarea
 //1. el primer valor del arr se llamara nombre
 //2. el se llamara setNombre
-const useState = (valor) => {
+const usState = (valor) => {
     return [valor, () => {console.log('Hola mundo')}];
 
 }
 
-const [nombre, setNombre] = useState('Goku');
+const [nombre, setNombre] = usState('Goku');
 
 //arr[1]();
 

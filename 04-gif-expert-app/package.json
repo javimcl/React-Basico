@@ -1,5 +1,5 @@
 {
-  "name": "counter-app",
+  "name": "gif-expert-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -34,9 +34,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
-    "enzyme-to-json": "^3.6.2"
   }
 }

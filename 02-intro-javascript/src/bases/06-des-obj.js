@@ -30,7 +30,7 @@ const {edad, clave, nombre} = persona;
 
 // }
 
-const obtenerPersona = ({clave, nombre, edad, rango = 'Sargento'}) => {
+const usContext = ({clave, nombre, edad, rango = 'Sargento'}) => {
     
     return {
         nombreClave: clave,
@@ -46,7 +46,7 @@ const obtenerPersona = ({clave, nombre, edad, rango = 'Sargento'}) => {
 
 //const {nombreClave, anios, latlng: {lat, lng}} = obtenerPersona(persona);
 
-const {nombreClave, anios, latlng} = obtenerPersona(persona);
+const {nombreClave, anios, latlng} = usContext(persona);
 const { lat, lng} = latlng;
 console.log(nombreClave, anios);
 console.log(lat, lng);
