@@ -7,12 +7,13 @@ export const AddCategory = ({setCategories}) => {
     const handleInputChange = (e) => {
 
         setInputValue(e.target.value);
+      //  console.log('llamado handle')
 
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        //console.log('submit')
+     //   console.log('submit')
         //const {setCategories} = props; 
 
         if(inputValue.trim().length > 2){
@@ -21,7 +22,7 @@ export const AddCategory = ({setCategories}) => {
         }
 
         
-        console.log(setCategories);
+       // console.log(setCategories);
 
     }
 
@@ -29,6 +30,7 @@ export const AddCategory = ({setCategories}) => {
 
         <form onSubmit={ handleSubmit }>
             {/* <h1>{inputValue}</h1> */}
+            <p>{inputValue}</p>
             <input
                 type="text"
                 value={inputValue}

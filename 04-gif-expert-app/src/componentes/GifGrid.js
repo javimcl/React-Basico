@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 //import React, { useState, useEffect } from 'react'
 //import { getGifs } from '../helpers/getGifs';
 import { useFetchGifs } from '../hooks/useFetchGifs';
@@ -42,7 +43,7 @@ export const GifGrid = ({ category }) => {
     return (
         <>
             <h3 className='animate__animated animate__swing'>{category}</h3>
-            { loading && <p className='animate__animated animate__heartBeat'>Loading</p>}
+            {loading && <p className='animate__animated animate__flash'>Loading</p>}
             <div className='carGrid'>
 
                 {/* <ol> */}
@@ -59,4 +60,9 @@ export const GifGrid = ({ category }) => {
             </div>
         </>
     )
+}
+
+
+GifGrid.propType = {
+    category: PropTypes.string.isRequired
 }

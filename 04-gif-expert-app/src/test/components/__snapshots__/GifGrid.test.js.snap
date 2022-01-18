@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Prueba de <GifGrid/> debe de mostrar items cuando se cargan imagenes useFecthGifs 1`] = `
+<Fragment>
+  <h3
+    className="animate__animated animate__swing"
+  >
+    One Punch
+  </h3>
+  <div
+    className="carGrid"
+  >
+    <GifGridItem
+      id="ABC"
+      key="ABC"
+      title="Cualquiera"
+      url="htpp:"
+    />
+    <GifGridItem
+      id="DFG"
+      key="DFG"
+      title="Cualquiera"
+      url="htpp:"
+    />
+  </div>
+</Fragment>
+`;
+
+exports[`Prueba de <GifGrid/> debe mostrar el componente correctamente  1`] = `
+<Fragment>
+  <h3
+    className="animate__animated animate__swing"
+  >
+    One Punch
+  </h3>
+  <p
+    className="animate__animated animate__flash"
+  >
+    Loading
+  </p>
+  <div
+    className="carGrid"
+  />
+</Fragment>
+`;
