@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en <TodoListItem/> debe de mostrarse correctamente 1`] = `
+<Fragment>
+  <li
+    className="list-group-item"
+    key="2"
+  >
+    <p
+      className="false"
+      onClick={[Function]}
+    >
+      1
+      . 
+      Aprender Mongo
+    </p>
+    <button
+      className="btn btn-danger"
+      onClick={[Function]}
+    >
+      Borrar
+    </button>
+  </li>
+</Fragment>
+`;
