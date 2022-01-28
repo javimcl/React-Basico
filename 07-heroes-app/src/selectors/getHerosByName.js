@@ -3,8 +3,12 @@ import { heroes } from "../data/heroes";
 
 export const getHerosByName= (name='') => {
 
-    // name = name.toLowerCase();
-    // return heroes.filter
+    console.log("xxxx" + name);
+    if (name.length === 0) {
+        return [];
+    }
 
-    return heroes;
+    name = name.toLowerCase();
+    return heroes.filter(hero => hero.superhero.toLowerCase().includes(name));
+
 }
