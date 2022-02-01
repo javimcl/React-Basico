@@ -7,12 +7,20 @@ import { SearchScreen } from '../components/search/SearchScreen';
 import { Navbar } from '../components/ui/Navbar';
 import { PrivateRoute } from '../hooks/PrivateRoute';
 import { DashboardRoutes } from './DashboardRoutes';
+import { PublicRoute } from './PublicRoute';
 
 export const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<LoginScreen />} />
+        {/* <Route path="/login" element={<LoginScreen />} /> */}
+
+        <Route path="/login" element={
+          <PublicRoute>
+            <LoginScreen />
+          </PublicRoute>
+        }>
+        </Route>
 
         <Route path="/*" element={
           <PrivateRoute>

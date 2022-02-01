@@ -17,7 +17,11 @@ export const LoginScreen = () => {
         }
         dispatch(action);
 
-        navigate('/marvel',{
+        console.log(localStorage.getItem('lastPath'))
+
+        const lastPath = localStorage.getItem('lastPath') || '/marvel'
+
+        navigate(lastPath,{
             replace: true
         });
 
@@ -25,7 +29,7 @@ export const LoginScreen = () => {
 
     return (
         <div className='container mt-5'>
-            <h1>Hola Login screeen</h1>
+            <h1>Login</h1>
             <hr />
             <button 
             onClick={handleLogin}

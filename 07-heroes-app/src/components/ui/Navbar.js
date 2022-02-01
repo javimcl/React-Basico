@@ -13,6 +13,8 @@ export const Navbar = () => {
 
     const handleLogout = () => {
 
+        console.log("logout")
+
         // const action = {
         //     type: types.logout
         // }

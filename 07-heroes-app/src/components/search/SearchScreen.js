@@ -75,7 +75,7 @@ export const SearchScreen = () => {
                         (q=== '')
                             ? (<div className='alert alert-info'>Buscar un heroe</div>)
                             : (heroesFileted.length === 0)
-                                && <div className='alert alert-danger'>No hay heroes</div>
+                                && <div className='alert alert-danger'>No hay resultados: {q}</div>
                     }
                     {
                         heroesFileted.map(hero => (
