@@ -1,12 +1,9 @@
 import React from 'react';
-import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
-import { DcScreen } from '../components/dc/DcScreen';
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { LoginScreen } from '../components/login/LoginScreen';
-import { MarvelScreen } from '../components/marvel/MarvelScreen';
-import { SearchScreen } from '../components/search/SearchScreen';
-import { Navbar } from '../components/ui/Navbar';
-import { PrivateRoute } from '../hooks/PrivateRoute';
+
 import { DashboardRoutes } from './DashboardRoutes';
+import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
 
 export const AppRouter = () => {

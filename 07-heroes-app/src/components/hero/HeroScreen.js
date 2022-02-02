@@ -8,7 +8,7 @@ export const HeroScreen = () => {
     const { heroeId } = useParams();
     const navigate = useNavigate();
 
-    console.log(heroeId);
+  //  console.log(heroeId);
 
     const hero = useMemo(() => getHeroById(heroeId), [heroeId]);
 
