@@ -1,4 +1,5 @@
 import React from 'react';
+import { JournalEntry } from './JournalEntry';
 
 export const JournalEntries = () => {
 
@@ -7,7 +8,7 @@ export const JournalEntries = () => {
       <div className='journal__entries'>
           {
               entries.map(value => (
-                  <JournalEntries key={value}/>
+                  <JournalEntry key={value}/>
               ))
           }
 
