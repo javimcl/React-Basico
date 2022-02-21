@@ -22,11 +22,11 @@ export const LoginScreen = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    dispatch(startLoginEmailPassword(email,password))
+    dispatch(startLoginEmailPassword(email, password))
 
   }
 
-  const handleGoogleLogin = ()=> {
+  const handleGoogleLogin = () => {
     dispatch(startGoogleLogin());
   }
 
@@ -34,7 +34,8 @@ export const LoginScreen = () => {
   return (
     <>
       <h3 className="auth__title">Login</h3>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin}
+        className='animate__animated animate__fadeIn animate__faster'>
         <input
           type="text"
           placeholder="Email"
@@ -55,7 +56,7 @@ export const LoginScreen = () => {
         <button className='btn btn-primary btn-block'
           type="submit"
           disabled={loading}
-         
+
         >
           Login
         </button>
