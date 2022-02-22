@@ -7,21 +7,22 @@ import { types } from "../types/types";
 
 
 export const startNewNote = () => {
-    return async (dispatch, getState ) => {
+    return async (dispatch, getState) => {
         const { uid } = getState().auth;
-        
+
         const newNote = {
             title: '',
             body: '',
             date: new Date().getTime()
         }
 
-        const doc = await db.collection(`${uid}/journal/notes`).add(newNote)
-        console.log(doc);
-        dispatch(activeNote(doc.id, newNote));
-        dispatch(addNewNote(doc.id, newNote));
-
-
+        try {
+            const doc = await db.collection(`${uid}/journal/notes`).add(newNote)
+            dispatch(activeNote(doc.id, newNote));
+            dispatch(addNewNote(doc.id, newNote));
+        } catch (error) {
+            console.log(error);
+        }
 
     }
 }
@@ -35,7 +36,7 @@ export const activeNote = (id, note) => ({
 
 });
 
-export const addNewNote = ( id, note ) => ({
+export const addNewNote = (id, note) => ({
     type: types.notesAddNew,
     payload: {
         id, ...note
@@ -50,7 +51,7 @@ export const startLoadingNotes = (uid) => {
     }
 }
 
-export const setNotes = (notes) =>( {
+export const setNotes = (notes) => ({
     type: types.notesLoad,
     payload: notes
 
@@ -65,7 +66,7 @@ export const startSaveNote = (note) => {
             delete note.url;
         }
 
-        const noteToFirestore = {...note};
+        const noteToFirestore = { ...note };
         delete noteToFirestore.id;
         await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore);
         dispatch(refreshNote(note.id, noteToFirestore));
@@ -78,20 +79,20 @@ export const startSaveNote = (note) => {
 export const refreshNote = (id, note) => ({
     type: types.notesUpdate,
     payload: {
-        id, 
+        id,
         note: {
-            id, 
+            id,
             ...note
         }
     }
 
 })
 
-export const startUploading = ( file ) => {
+export const startUploading = (file) => {
     return async (dispatch, getState) => {
-        const { active:activeNote} = getState().notes;
+        const { active: activeNote } = getState().notes;
         Swal.fire({
-            
+
             title: 'Uploading....',
             text: 'Please wait...',
             allowOutsideClick: false,
@@ -102,7 +103,7 @@ export const startUploading = ( file ) => {
         const fileUrl = await fileUpload(file);
         activeNote.url = fileUrl;
 
-       dispatch(startSaveNote(activeNote))
+        dispatch(startSaveNote(activeNote))
 
         Swal.close();
     }
