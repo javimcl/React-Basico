@@ -45,41 +45,41 @@ describe('Pruebas con las acciones de notes', () => {
     });
 
 
-    // test('debe de crear una nueva nota startNewNote', async() => {
+    test('debe de crear una nueva nota startNewNote', async() => {
         
-    //     await store.dispatch( startNewNote() );
+        await store.dispatch( startNewNote() );
 
-    //     const actions = store.getActions();
-    //     // console.log(actions);
+        const actions = store.getActions();
+        // console.log(actions);
 
-    //     expect( actions[0] ).toEqual({
-    //         type: types.notesActive,
-    //         payload: {
-    //             id: expect.any(String),
-    //             title: '',
-    //             body: '',
-    //             date: expect.any(Number)
-    //         }
-    //     });
+        expect( actions[0] ).toEqual({
+            type: types.notesActive,
+            payload: {
+                id: expect.any(String),
+                title: '',
+                body: '',
+                date: expect.any(Number)
+            }
+        });
 
-    //     expect( actions[1] ).toEqual({
-    //         type: types.notesAddNew,
-    //         payload: {
-    //             id: expect.any(String),
-    //             title: '',
-    //             body: '',
-    //             date: expect.any(Number)
-    //         }
-    //     });
+        expect( actions[1] ).toEqual({
+            type: types.notesAddNew,
+            payload: {
+                id: expect.any(String),
+                title: '',
+                body: '',
+                date: expect.any(Number)
+            }
+        });
 
-    //     // const docId .... action.... payload.... id
-    //     // await ..... db.... doc(``)..... .delete();
-    //     const docId = actions[0].payload.id;
-    //     await db.doc(`/TESTING/journal/notes/${ docId }`).delete();
+        // const docId .... action.... payload.... id
+        // await ..... db.... doc(``)..... .delete();
+        const docId = actions[0].payload.id;
+        await db.doc(`/TESTING/journal/notes/${ docId }`).delete();
 
 
 
-    // })
+    })
     
 
     // test('startLoadingNotes debe cargar las notas', async() => {
@@ -105,26 +105,26 @@ describe('Pruebas con las acciones de notes', () => {
     // })
 
 
-    test('startSaveNote debe de actualizar la nota', async(done) => {
+    // test('startSaveNote debe de actualizar la nota', async(done) => {
 
-        const note = {
-            id: 'S7fRlpRS43lZLfBsuqZf',
-            title: 'titulo2',
-            body: 'body2'
-        };
+    //     const note = {
+    //         id: 'S7fRlpRS43lZLfBsuqZf',
+    //         title: 'titulo2',
+    //         body: 'body2'
+    //     };
 
-        await store.dispatch( startSaveNote( note ) );
+    //     await store.dispatch( startSaveNote( note ) );
 
-        const actions = store.getActions();
-        // console.log(actions);
-        expect( actions[0].type ).toBe( types.notesUpdate );
+    //     const actions = store.getActions();
+    //     // console.log(actions);
+    //     expect( actions[0].type ).toBe( types.notesUpdate );
 
-        const docRef = await db.doc(`/TESTING/journal/notes/${ note.id }`).get();
+    //     const docRef = await db.doc(`/TESTING/journal/notes/${ note.id }`).get();
 
-        expect( docRef.data().title ).toBe( note.title );
-        done();
+    //     expect( docRef.data().title ).toBe( note.title );
+    //     done();
         
-    }, 30000)
+    // }, 30000)
     
 
     // test('startUploading debe de actualizar el url del entry', async() => {

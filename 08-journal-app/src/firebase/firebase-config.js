@@ -3,7 +3,7 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 
-console.log(process.env);
+//console.log(process.env);
 
 
 // const firebaseConfig = {

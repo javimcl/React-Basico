@@ -13,7 +13,7 @@ export const RegisterScreen = () => {
 
   const { msgError } = useSelector(state => state.ui);
 
-  console.log(msgError);
+ // console.log(msgError);
 
   const initial = {
     name: 'Hernando',
@@ -27,7 +27,7 @@ export const RegisterScreen = () => {
   const { name, email, password, password2 } = formValues;
 
   const handleRegister = (e) => {
-    e.preventDefault();
+    e.preventDefault();    
     if (isFormValid()) {
       dispatch(startRegisterWithEmailPasswordName(email, password, name))
     }
@@ -38,7 +38,7 @@ export const RegisterScreen = () => {
     if (name.trim().length === 0) {
       dispatch(setError('Name is required'));
       return false;
-    } else if (!validator.isEmail(email)) {
+    } else if (!validator.isEmail(email)) {      
       dispatch(setError('Email is not valida'));
       return false;
 
