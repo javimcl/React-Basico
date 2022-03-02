@@ -89,7 +89,7 @@ export const CalendarModal = () => {
     }
     return (
         <Modal
-            isOpen={true}
+            isOpen={false}
             // onAfterOpen={afterOpenModal}
             onRequestClose={closeModal}
             style={customStyles}
