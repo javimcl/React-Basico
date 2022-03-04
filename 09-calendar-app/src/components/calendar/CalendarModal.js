@@ -1,10 +1,10 @@
 import moment from 'moment';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DateTimePicker from 'react-datetime-picker';
 import Modal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
-import { eventAddNew } from '../../actions/events';
+import { eventAddNew, eventCleanActiveEvent, eventUpdated } from '../../actions/events';
 import { uiCloseModal } from '../../actions/ui';
 import '../../styles.css'
 
@@ -35,17 +35,28 @@ export const CalendarModal = () => {
 
     const dispatch = useDispatch();
 
-    const {modalOpen} = useSelector( state => state.ui );
+    const { modalOpen } = useSelector(state => state.ui);
+    const { activeEvent } = useSelector(state => state.calendar);
 
     const [dateStart, setDateStart] = useState(now.toDate())
     const [dateFin, setDateFin] = useState(fin.toDate());
     const [titleValid, setTitleValid] = useState(true)
 
     const [formValues, setFormValues] = useState(
-       initEvent
+        initEvent
     )
 
     const { notes, title, start, end } = formValues;
+
+    useEffect(() => {
+        if (activeEvent) {
+            setFormValues(activeEvent);
+        } else {
+            setFormValues(initEvent);
+        }
+
+    }, [activeEvent, setFormValues])
+
 
 
     const handleInputChange = ({ target }) => {
@@ -60,6 +71,7 @@ export const CalendarModal = () => {
 
     const closeModal = () => {
         dispatch(uiCloseModal())
+        dispatch(eventCleanActiveEvent());
         setFormValues(initEvent);
 
 
@@ -88,29 +100,33 @@ export const CalendarModal = () => {
         e.preventDefault();
 
         const momentStart = moment(start);
-        const momentEnd = moment(end);       
+        const momentEnd = moment(end);
         if (momentStart.isSameOrAfter(momentEnd)) {
-            return Swal.fire('Error', 'La fecha fin debe ser mayor a la fecha de inicio');                        
+            return Swal.fire('Error', 'La fecha fin debe ser mayor a la fecha de inicio');
         }
 
         if (title.trim().length < 2) {
             return setTitleValid(false);
-            
+
         }
 
-        //Realizar grabacion
-        dispatch(eventAddNew({
-            ...formValues,
-            id: new Date().getTime(),
-            user: {
-                _id: '123',
-                name: 'Javier'
-            }
-        }));
-        
+        if (activeEvent) {
+            dispatch(eventUpdated(formValues))
+        } else {
+            //Realizar grabacion
+            dispatch(eventAddNew({
+                ...formValues,
+                id: new Date().getTime(),
+                user: {
+                    _id: '123',
+                    name: 'Javier'
+                }
+            }));
+        }
+
         setTitleValid(true);
         closeModal();
-        
+
 
     }
     return (
@@ -124,7 +140,7 @@ export const CalendarModal = () => {
             overlayClassName='modal-fondo'
         >
 
-            <h1> Nuevo evento </h1>
+            <h1> {(activeEvent) ? 'Editar evento': 'Nuevo evento'} </h1>
             <hr />
             <form className="container"
                 onSubmit={handleSubmitForm}>
