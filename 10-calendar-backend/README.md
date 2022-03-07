@@ -15,3 +15,7 @@ nodemon
 
 
 npm i dotenv
+
+ npm i body-parser
+
+ npm i express-validator
