@@ -19,3 +19,9 @@ npm i dotenv
  npm i body-parser
 
  npm i express-validator
+
+#instalar mongo 
+npm i mongoose
+
+#Encriptar
+ npm i bcryptjs
