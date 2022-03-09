@@ -25,3 +25,6 @@ npm i mongoose
 
 #Encriptar
  npm i bcryptjs
+
+
+ npm i jsonwebtoken
