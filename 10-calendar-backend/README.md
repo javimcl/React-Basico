@@ -28,3 +28,6 @@ npm i mongoose
 
 
  npm i jsonwebtoken
+
+
+ npm install cors

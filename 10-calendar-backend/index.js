@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { dbConnection } = require('./database/config');
+const cors = require('cors')
 require('dotenv').config();
 
 
@@ -10,6 +11,9 @@ const app = express();
 
 //Base de datos
 dbConnection();
+
+//Cors
+app.use(cors())
 
 //Directorio publico
 app.use(express.static('public'));
@@ -27,6 +31,8 @@ app.use(bodyParser.json());
 
 // auth crear, login renew
 app.use('/api/auth', require('./routes/auth'));
+
+app.use('/api/events', require('./routes/events'));
 
 //CRUD: Eventos
 
