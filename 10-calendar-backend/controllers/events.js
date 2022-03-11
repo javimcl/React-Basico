@@ -37,20 +37,97 @@ const crearEvento = async (req, res = response) => {
 
 }
 
-const actualizaEvento = (req, res = response) => {
-    res.status(201).json(
-        {
+const actualizaEvento = async (req, res = response) => {
+
+    const eventoId = req.params.id;
+
+    try {
+        const evento = await Evento.findById(eventoId);
+
+        if (!evento) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'Evento no existe con el id'
+            });
+        }
+
+        if (evento.user.toString() !== req.uid) {
+            return res.status(401).json(
+                {
+                    ok: true,
+                    msg: 'No tiene privilegio para eliminar este evento'
+                })
+        }
+
+        const nuevoEvento = {
+            ...req.body,
+            user: req.uid
+        }
+
+        const eventoActualizado = await Evento.findByIdAndUpdate(eventoId, nuevoEvento, { new: true });
+
+        res.status(201).json({
             ok: true,
-            msg: 'actualizaEvento'
-        })
+            evento: eventoActualizado
+        });
+
+
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'HABLE CON EL ADMINISTRADOR'
+        });
+
+    }
+
+
+
+
 }
 
-const eliminarEvento = (req, res = response) => {
-    res.status(201).json(
-        {
+const eliminarEvento = async (req, res = response) => {
+    const eventoId = req.params.id;
+
+    try {
+        const evento = await Evento.findById(eventoId);
+
+        if (!evento) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'Evento no existe con el id'
+            });
+        }
+
+        if (evento.user.toString() !== req.uid) {
+            return res.status(401).json(
+                {
+                    ok: true,
+                    msg: 'No tiene privilegio de editar este evento'
+                })
+        }
+
+
+
+        await Evento.findByIdAndDelete(eventoId);
+
+        res.status(201).json({
             ok: true,
-            msg: 'deleteEvento'
-        })
+            evento: eventoId
+        });
+
+
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'HABLE CON EL ADMINISTRADOR'
+        });
+
+    }
+
 }
 
 module.exports = {
