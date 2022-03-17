@@ -37,3 +37,9 @@ npm i mongoose
   https://git.heroku.com/mern-calendar-javimcl.git
 
   heroku logs -n 1000 --tail
+
+
+  git status
+  git add .
+  git commit -m "auth controller updated"
+  git push heroku master
