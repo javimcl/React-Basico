@@ -4,7 +4,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Redirect,
-  Route
 } from "react-router-dom";
 import { startChecking } from '../actions/auth';
 import { LoginScreen } from '../components/auth/LoginScreen';
