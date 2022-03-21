@@ -54,8 +54,8 @@ const actualizaEvento = async (req, res = response) => {
         if (evento.user.toString() !== req.uid) {
             return res.status(401).json(
                 {
-                    ok: true,
-                    msg: 'No tiene privilegio para eliminar este evento'
+                    ok: false,
+                    msg: 'No tiene privilegio para actualizar este evento'
                 })
         }
 
