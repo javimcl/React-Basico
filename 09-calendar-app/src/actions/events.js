@@ -69,10 +69,16 @@ const eventUpdated = (event) => ({
 
 
 export const eventStartDelete = (event) => {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
+
+       const {id}  = getState().calendar.activeEvent;
+
+
         try {
-            const resp = await fetchConToken(`events/${event.id}`, {}, 'DELETE');
+            const resp = await fetchConToken(`events/${id}`, {}, 'DELETE');
             const body = await resp.json();
+
+            console.log(body);
 
             if (body.ok) {
                 dispatch(eventDeleted(event));
@@ -113,6 +119,8 @@ export const eventStartLoading = () => {
 
     }
 }
+
+export const eventLogout = () => ({ type: types.eventLogout});
 
 const eventLoaded = (eventos) => ({
     type: types.eventLoaded,

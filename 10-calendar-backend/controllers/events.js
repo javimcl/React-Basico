@@ -103,7 +103,7 @@ const eliminarEvento = async (req, res = response) => {
         if (evento.user.toString() !== req.uid) {
             return res.status(401).json(
                 {
-                    ok: true,
+                    ok: false,
                     msg: 'No tiene privilegio de editar este evento'
                 })
         }
