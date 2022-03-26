@@ -12,10 +12,10 @@ jest.mock('sweetalert2', () => ({
 }))
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
-
+Storage.prototype.setItem = jest.fn();
 const initState = {}
 let store = mockStore(initState)
-Storage.prototype.setItem = jest.fn();
+
 describe('PRuebas en las acciones  Auth', () => {
 
     beforeEach(() => {
@@ -24,6 +24,8 @@ describe('PRuebas en las acciones  Auth', () => {
     });
 
     test('start login correcto', async () => {
+
+        
         await store.dispatch(startLogin('nando@gmail.com', '123456'));
 
         const actions = store.getActions();
@@ -89,10 +91,29 @@ describe('PRuebas en las acciones  Auth', () => {
 
     })
 
-    test('startChecking corrrecto', async () => { 
+    test('startChecking correcto', async () => { 
+
+        fechModule.fetchConToken = jest.fn(() => ({
+            json() {
+                return {
+                    ok: true,
+                    uid: '123',
+                    name: 'carlos',
+                    token: 'ABV343'
+                }
+            }
+        }));
         await store.dispatch(startChecking());
         const actions = store.getActions();
-        console.log(actions);
+        expect(actions[0]).toEqual({
+            type: types.authLogin,
+            payload: {
+                uid: '123',
+                name: 'carlos'
+            }
+        })
+
+        expect(localStorage.setItem).toHaveBeenCalledWith('token', 'ABV343')
      })
 
 })
