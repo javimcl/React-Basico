@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { eventStartDelete } from '../../actions/events';
 
 export const DeleteEventFab = () => {
-    console.log('evento')
+    
     const dispatch = useDispatch();
     const handleDelete = () => {
         dispatch(eventStartDelete());

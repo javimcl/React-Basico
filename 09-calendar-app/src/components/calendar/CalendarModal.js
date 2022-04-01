@@ -19,7 +19,10 @@ const customStyles = {
     },
 };
 
-Modal.setAppElement('#root');
+if (process.env.NODE_ENV !== 'test') {
+    Modal.setAppElement('#root');    
+}
+
 
 const now = moment().minutes(0).seconds(0).add(1, 'hours');
 const fin = now.clone().add(1, 'hours');
