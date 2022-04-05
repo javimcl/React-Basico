@@ -27,12 +27,14 @@ export const LoginScreen = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
+        console.log('handleLogin')
         dispatch(startLogin(lEmail, lPassword));
     }
 
 
     const handleRegister = (e) => {
         e.preventDefault();
+        console.log('handle')
 
         if (rPassword1 !== rPassword2) {
             return Swal.fire('Error', 'Clave no son iguales', 'error')
