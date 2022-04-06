@@ -9,6 +9,7 @@ import { CalendarScreen } from '../../../components/calendar/CalendarScreen';
 import { messages } from '../../../helpers/calendar-messages-es';
 import { types } from '../../../types/types';
 import { eventSetActive } from '../../../actions/events';
+import { act } from '@testing-library/react';
 
 
 jest.mock('../../../actions/events', () =>( {
@@ -69,9 +70,11 @@ describe('Pruebas en <CalendarScreen/>', () => {
 
          expect(eventSetActive).toHaveBeenCalledWith({start: 'Hola'});
 
-         calendar.prop('onView')('week');
-
-         expect(localStorage.setItem).toHaveBeenCalledWith('lastView', 'week');
+         act(() => {
+            calendar.prop('onView')('week');
+            expect(localStorage.setItem).toHaveBeenCalledWith('lastView', 'week');
+         })
+        
 
 
       })
